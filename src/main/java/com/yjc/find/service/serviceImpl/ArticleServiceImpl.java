@@ -43,10 +43,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public void saveArticleLost(Article article, MultipartFile[] articleImgList) {
         MyUtil.checkNull(article);
         List<String> imgAddrList = new ArrayList<>();
-        MyUtil.checkNull(article.getUserId());
+
         MyUtil.checkNull(article.getArticleName());
         MyUtil.checkNull(article.getContent());
-
+        MyUtil.checkNull(article.getUserId());
         MyUtil.checkNull(article.getSchoolId());
         MyUtil.checkNull(article.getArticleCategoryId());
         MyUtil.checkNull(article.getAreaId());
