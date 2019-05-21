@@ -11,10 +11,7 @@ import com.yjc.find.utils.JwtUtil;
 import com.yjc.find.utils.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/find")
@@ -23,7 +20,7 @@ public class LoginController extends BaseController {
     private UserService userService;
 
     @PostMapping("/reg")
-    public ResultMsg reg(User user){
+    public ResultMsg reg(@RequestParam  User user){
         MyUtil.checkNull(user);
         MyUtil.checkNull(user.getUsername());
         MyUtil.checkNull(user.getPassword());
