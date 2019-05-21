@@ -100,25 +100,25 @@
         left join tb_user tu on  tu.id = ta.user_id
         where 1=1
         <if test="schoolId!=null and schoolId!=''">
-            and ta.school_id = #{schoolId}
+            and ta.school_id = #{article.schoolId}
         </if>
         <if test="articleName!=null and articleName!=''">
-            and ta.article_name like CONCAT('%',#{articleName},'%')
+            and ta.article_name like CONCAT('%',#{article.articleName},'%')
         </if>
         <if test="areaId!=null and areaId!=''">
-            and  ta.area_id = #{areaId}
+            and  ta.area_id = #{article.areaId}
         </if>
         <if test="articleCategoryId!=null and articleCategoryId!=''">
-            and ta.article_category_id = #{articleCategoryId}
+            and ta.article_category_id = #{article.articleCategoryId}
         </if>
-        <if test="lostDate!=null and lostDate!=''">
-            and (ta.lost_date between  date_sub(DATE_FORMAT(#{lostDate},'%Y-%m-%d'), interval 1 day)  and date_add(DATE_FORMAT(#{lostDate},'%Y-%m-%d'), interval 1 day))
+        <if test="article!=null and article.lostDate!=null">
+            and (ta.lost_date between  date_sub(DATE_FORMAT(#{article.lostDate},'%Y-%m-%d'), interval 1 day)  and date_add(DATE_FORMAT(#{article.lostDate},'%Y-%m-%d'), interval 1 day))
         </if>
         <if test="idFind!=null and isFind!=''">
-            and ta.is_find = #{idFind}
+            and ta.is_find = #{article.idFind}
         </if>
         <if test="status!=null and status!=''">
-            and ta.status = #{status}
+            and ta.status = #{article.status}
         </if>
         and ta.lost_or_find = 2
         order by create_date desc
@@ -130,25 +130,25 @@
 
         where 1=1
         <if test="schoolId!=null and schoolId!=''">
-            and ta.school_id = #{schoolId}
+            and ta.school_id = #{article.schoolId}
         </if>
         <if test="articleName!=null and articleName!=''">
-            and ta.article_name like CONCAT('%',#{articleName},'%')
+            and ta.article_name like CONCAT('%',#{article.articleName},'%')
         </if>
         <if test="areaId!=null and areaId!=''">
-            and  ta.area_id = #{areaId}
+            and  ta.area_id = #{article.areaId}
         </if>
         <if test="articleCategoryId!=null and articleCategoryId!=''">
-            and ta.article_category_id = #{articleCategoryId}
+            and ta.article_category_id = #{article.articleCategoryId}
         </if>
-        <if test="lostDate!=null and lostDate!=''">
-            and (#{lostDate} between  date_sub(DATE_FORMAT(ta.lost_date,'%Y-%m-%d'), interval 1 day)  and date_add(DATE_FORMAT(ta.lost_date,'%Y-%m-%d'), interval 1 day))
+        <if test="article!=null and article.lostDate!=null">
+            and (ta.lost_date between  date_sub(DATE_FORMAT(#{article.lostDate},'%Y-%m-%d'), interval 1 day)  and date_add(DATE_FORMAT(#{article.lostDate},'%Y-%m-%d'), interval 1 day))
         </if>
         <if test="idFind!=null and isFind!=''">
-            and ta.is_find = #{idFind}
+            and ta.is_find = #{article.idFind}
         </if>
         <if test="status!=null and status!=''">
-            and ta.status = #{status}
+            and ta.status = #{article.status}
         </if>
         and ta.lost_or_find = 2
     </select>
@@ -173,8 +173,8 @@
         <if test="article!=null and article.areaId!=null and article.areaId!=''">
             and ta.area_id = #{article.areaId}
         </if>
-        <if test="article!=null and article.lostDate!=null and article.lostDate!=''">
-            and (ta.lost_date between  date_sub(DATE_FORMAT(#{lostDate},'%Y-%m-%d'), interval 1 day)  and date_add(DATE_FORMAT(#{lostDate},'%Y-%m-%d'), interval 1 day))
+        <if test="article!=null and article.lostDate!=null">
+            and (ta.lost_date between  date_sub(DATE_FORMAT(#{article.lostDate},'%Y-%m-%d'), interval 1 day)  and date_add(DATE_FORMAT(#{article.lostDate},'%Y-%m-%d'), interval 1 day))
         </if>
         <if test="article!=null and article.articleCategoryId!=null and article.articleCategoryId!=''">
             and ta.article_category_id = #{article.articleCategoryId}
