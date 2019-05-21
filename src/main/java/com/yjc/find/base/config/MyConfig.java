@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 public class MyConfig extends WebMvcConfigurationSupport {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/*");
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 
         registry.addResourceHandler("/image/**").addResourceLocations("file:/root/find/images/");
 

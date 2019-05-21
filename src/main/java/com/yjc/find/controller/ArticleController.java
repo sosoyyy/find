@@ -20,7 +20,7 @@ public class ArticleController extends BaseController {
     private ArticleService articleService;
 
     @PutMapping
-    public ResultMsg update(Article article, @RequestParam("imgList") MultipartFile[] articleImgList){
+    public ResultMsg update(Article article, @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
         articleService.updateArticle(article,articleImgList);
         return ResultMsgFactory.createSuccessMsg();
     }
@@ -49,7 +49,7 @@ public class ArticleController extends BaseController {
     }
 
     @PostMapping("/lost")
-    public ResultMsg addL(Article article, @RequestParam("imgList") MultipartFile[] articleImgList){
+    public ResultMsg addL(Article article, @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
         article.setUserId(JwtUtil.getUser().getId());
         article.setLostOrFind(1);
         System.out.println(articleImgList.length);
@@ -58,7 +58,7 @@ public class ArticleController extends BaseController {
     }
 
     @PostMapping("/find")
-    public ResultMsg addF(Article article, @RequestParam("imgList") MultipartFile[] articleImgList){
+    public ResultMsg addF(Article article,  @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
         article.setUserId(JwtUtil.getUser().getId());
         article.setLostOrFind(2);
         System.out.println(articleImgList.length);
