@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjc.find.dao.UserMapper">
+    <select id="selectUser" parameterType="Long" resultType="com.yjc.find.pojo.User">
+        select tu.*,ts.school_name
+        from tb_user tu
+        left join tb_school ts on tu.school_id = ts.id
+        where tu.id=#{id}
+    </select>
+    <select id="selectUserPage" parameterType="java.util.Map" resultType="com.yjc.find.pojo.User">
+        select tu.*,ts.school_name
+        from tb_user tu
+        left join tb_school ts on tu.school_id = ts.id
+        where 1=1
+        <if test="username!=null and username!=''">
+            and tu.username = #{username}
+        </if>
+        <if test="nickName!=null and nickName!=''">
+            and tu.nick_name=#{nickName}
+        </if>
+        <if test="userType!=null and userType!=''">
+            and tu.user_type=#{userType}
+        </if>
+        <if test="schoolId!=null and schoolId!=''">
+            and tu.school_id = #{schoolId}
+        </if>
+        ORDER BY username asc
+        limit limit #{beginIndex},#{limit}
+    </select>
+    <select id="selectUserCount" parameterType="java.util.Map">
+        select count(*)
+        where 1=1
+        <if test="username!=null and username!=''">
+            and tu.username = #{username}
+        </if>
+        <if test="nickName!=null and nickName!=''">
+            and tu.nick_name=#{nickName}
+        </if>
+        <if test="userType!=null and userType!=''">
+            and tu.user_type=#{userType}
+        </if>
+        <if test="schoolId!=null and schoolId!=''">
+            and tu.school_id = #{schoolId}
+        </if>
+    </select>
+</mapper>

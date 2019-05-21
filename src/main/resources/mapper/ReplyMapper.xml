@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjc.find.dao.ReplyMapper">
+    <select id="selectReply" resultType="com.yjc.find.pojo.Reply" parameterType="Long">
+        select tr.*,tu.nick_name as sendName,tu.user_img_addr as  sendImg
+        from tb_reply tr
+        left join tb_user tu on tr.send_id = tu.id
+        where tr.id = #{id}
+    </select>
+    <select id="selectReplyPage" resultType="com.yjc.find.pojo.Reply" parameterType="java.util.Map">
+        select tr.*,tu.nick_name as sendName,tu.user_img_addr as  sendImg
+        from tb_reply tr
+        left join tb_user tu on tr.send_id = tu.id
+        where 1=1
+        <if test="articleId!=null and articleId!=''">
+            and tr.article_id = #{articleId}
+        </if>
+        <if test="sendId!=null and sendId!=''">
+            and tr.send_id = #{sendId}
+        </if>
+        order by tr.create_date asc
+        limit #{beginIndex},#{limit}
+    </select>
+    <select id="selectReplyCount" resultType="int" parameterType="java.util.Map">
+        select count(*)
+        from tb_reply tr
+        left join tb_user tu on tr.send_id = tu.id
+        where 1=1
+        <if test="articleId!=null and articleId!=''">
+            and tr.article_id = #{articleId}
+        </if>
+        <if test="sendId!=null and sendId!=''">
+            and tr.send_id = #{sendId}
+        </if>
+    </select>
+</mapper>

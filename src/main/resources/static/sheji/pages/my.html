@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+
+</head>
+<body>
+<div style="float: right;margin-right: 50px">
+
+    <button  class="btn btn-link">退出登录</button>
+    <a href="index.html"><button class="btn btn-link">返回首页</button></a>
+</div>
+
+<div class="jumbotron">
+    <div class="container" align="center">
+        <h2 align="center" class="text-info" style="font-family:宋体;font-weight:bold;font-size:49px; clear:both">寻物网</h2>
+        <br>
+        <div align="center" class="text-muted">全国高校失物招领平台</div>
+        <br>
+        <br>
+
+    </div>
+</div>
+
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active">
+        <a href="#mylost" data-toggle="tab">
+            我发布的寻物启事
+        </a>
+    </li>
+    <li><a href="#myfound" data-toggle="tab">我发布的失物招领</a></li>
+    <li class="dropdown">
+        <a href="#" id="myTabDrop1" class="dropdown-toggle"
+           data-toggle="dropdown">我的消息<span class="badge">20</span>
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+            <li><a href="#system" tabindex="-1" data-toggle="tab">系统消息<span class="badge">11</span></a></li>
+            <li><a href="#private" tabindex="-1" data-toggle="tab">私信/回复和评论<span class="badge">9</span></a></li>
+        </ul>
+    </li>
+</ul>
+
+
+<div id="tempalte" style="display: none">
+    <div style="height: 150px;margin:10px 0">
+
+        <div style="height: 150px;float: left;">
+            <a v-bind:href="content.a">
+                <img style="height: 150px;width: 150px;margin-left: 100px" src="http://www.shiwurenling.com/member/upload/1555893023_400_400.jpg">
+            </a>
+        </div>
+
+        <div style="float:left;margin-left: 20px;">
+            <h2>
+                <a v-bind:href="content.a">{{content.school}}:在{{content.address}}拾到{{content.goods}}</a>
+            </h2>
+            <p >所在城市：广东省 -- 广州市 <br>发布时间：{{content.time}}<br>信息类型：失物招领</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="myTabContent" class="tab-content">
+
+
+    <div class="tab-pane fade in active" id="mylost">
+        <div id="div1">
+            <goods-show v-for="post in posts" v-bind:content="post"></goods-show>
+            <nav>
+                <ul class=" pager">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+
+    <div class="tab-pane fade" id="myfound">
+        <div id="div2">
+            <goods-show v-for="post in posts" v-bind:content="post"></goods-show>
+            <nav>
+                <ul class=" pager">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="system">
+        <div id="div3">
+            <table class="layui-table msg_box" lay-skin="line">
+                <colgroup>
+                    <col width="45%">
+                    <col width="25%">
+                    <col width="15%">
+                </colgroup>
+                <tbody >
+
+                <tr><td class="msg_info">'
+                      <div style="margin-left: 40px">
+                          <h6>系统消息</h6>
+                        <p>家电家具发电机房但是房</p>
+                         </div>
+                      </td>
+                    <td >2019-4-28</td>
+                    <td >
+                       <a >回复</a>
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+
+            </table>
+            <nav>
+                <ul class=" pager">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="private">
+        <div id="div4">
+            <table class="layui-table msg_box" lay-skin="line">
+                <colgroup>
+                    <col width="45%">
+                    <col width="25%">
+                    <col width="15%">
+                </colgroup>
+                <tbody >
+
+                <tr><td class="msg_info">'
+                    <div style="margin-left: 40px">
+                        <h6>小张</h6>
+                        <p>家电家具发电机房但是房</p>
+                    </div>
+                </td>
+                    <td >2019-4-28</td>
+                    <td >
+                        <a >回复</a>
+                    </td>
+                </tr>
+
+
+
+                </tbody>
+            </table>
+            <nav>
+                <ul class=" pager">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    var v1=document.getElementById("tempalte").innerHTML;
+    var v1object={
+        props:["content"],
+        template:v1
+    };
+    Vue.component('goods-show',v1object);
+    new Vue({
+        el:"#div1",
+        data:{
+            posts:[
+                {"school":"华中科技大学",
+                    "address":"东九",
+                    "goods":"身份证",
+                    "time":"2019-4-22",
+                    "a":"https://www.baidu.com/"
+                },
+                {
+                    "school":"武汉大学",
+                    "address":"校大门",
+                    "goods":"校园卡",
+                    "time":"2019-4-21",
+                    "a":"https://www.google.com"
+                },
+                {
+                    "school":"武汉大学",
+                    "address":"校大门",
+                    "goods":"校园卡",
+                    "time":"2019-4-21",
+                    "a":"https://www.google.com"
+                }]}})
+
+                new Vue({
+                    el:"#div2",
+                    data:{
+                        posts:[
+                            {"school":"华中科技大学",
+                                "address":"东九",
+                                "goods":"身份证",
+                                "time":"2019-4-22",
+                                "a":"https://www.baidu.com/"
+                            },
+                            {
+                                "school":"武汉大学",
+                                "address":"校大门",
+                                "goods":"校园卡",
+                                "time":"2019-4-21",
+                                "a":"https://www.google.com"
+                            },
+                            {
+                                "school":"武汉大学",
+                                "address":"校大门",
+                                "goods":"校园卡",
+                                "time":"2019-4-21",
+                                "a":"https://www.google.com"
+                            }
+            ]
+        }
+    })
+
+</script>
+
+</body>
+</html>

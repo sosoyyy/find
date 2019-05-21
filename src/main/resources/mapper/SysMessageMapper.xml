@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjc.find.dao.SysMessageMapper">
+    <select id="selectSysMessage" parameterType="Long" resultType="com.yjc.find.pojo.SysMessage">
+        select tsm.*
+        from tb_sys_message tsm
+       where  tsm.id = #{id}
+    </select>
+    <insert id="batchInsert">
+        insert into tb_sys_message(receive_id,title,content) values
+        <foreach collection="list" item="id" index="index" separator=",">
+            (#{id},#{sysMessage.title},#{sysMessage.content})
+        </foreach>
+    </insert>
+</mapper>

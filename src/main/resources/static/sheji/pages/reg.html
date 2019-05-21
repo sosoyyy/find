@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    div label{
+        float:left;
+    }
+
+    </style>
+</head>
+<body>
+
+<div align="center" class="container" style="width:50%;margin:100px auto">
+    <div class="text-muted" style="font-size:50px;float: left">欢  迎  注  册</div><br>
+    <div style="float: left;margin-top: 50px">
+        <label>账号 </label>
+        <input class="form-control username" type="text" style="width:500px;"><br>
+    <label>昵称 </label>
+    <input class="form-control nickName" type="text" style="width:500px;"><br>
+    <label>邮箱 </label>
+    <input class="form-control  email" type="text" style="width:500px;"><br>
+    <label>密码 </label>
+    <input class="form-control password" style="width:500px;"><br>
+      <button  class="b" >注 册</button>
+</div>
+</div>
+</div>
+<script>
+$(".b").click(function () {
+
+    $.ajax({
+        url:'/find/reg',
+        type:'post',
+        dataType:'json',
+        data:{
+            username:$(".username").val(),
+            nickName:$(".nickName").val(),
+            email:$(".email").val(),
+            password:$(".password").val()
+        },
+        success:function (data) {
+            if(data.code==0){
+
+                window.location.href="http://localhost:8080/sheji/pages/login.html"
+            }
+        }
+
+    })
+
+})
+
+
+
+</script>
+
+
+
+</body>
+</html>

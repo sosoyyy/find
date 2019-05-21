@@ -1,0 +1,28 @@
+[{
+    "usersId" : "1",
+    "userName" : "张随新",
+    "userEmail" : "1687353161@qq.com",
+    "userStatus" : "管理员",
+    "zTime" : "2019-04-30 15:35",
+    "school": "华中科技大学"
+},{
+    "usersId" : "2",
+    "userName" : "叶金成",
+    "userEmail" : "1687353161@qq.com",
+    "userStatus" : "管理员",
+    "zTime" : "2019-04-30 15:35",
+    "school": "华中科技大学"
+},{
+    "usersId" : "3",
+    "userName" : "张三",
+    "userEmail" : "1687353161@qq.com",
+    "userStatus" : "网站用户",
+    "zTime" : "2019-04-30 15:35"
+},{
+        "usersId" : "2",
+        "userName" : "李四",
+        "userEmail" : "1687353161@qq.com",
+        "userStatus" : "网站用户",
+        "zTime" : "2019-04-30 15:35"
+    }
+]
