@@ -17,18 +17,21 @@
 
 <div align="center" class="container" style="width:50%;margin:100px auto">
     <div class="text-muted" style="font-size:50px;float: left">欢  迎  注  册</div><br>
+    <form>
     <div style="float: left;margin-top: 50px">
         <label>账号 </label>
-        <input class="form-control username" type="text" style="width:500px;"><br>
+        <input class="form-control username " required type="text" style="width:500px;"><br>
     <label>昵称 </label>
-    <input class="form-control nickName" type="text" style="width:500px;"><br>
+    <input class="form-control nickName" required type="text" style="width:500px;"><br>
     <label>邮箱 </label>
-    <input class="form-control  email" type="text" style="width:500px;"><br>
+    <input class="form-control  email" required type="email" style="width:500px;"><br>
     <label>密码 </label>
-    <input class="form-control password" style="width:500px;"><br>
-      <button  class="b" >注 册</button>
-</div>
-</div>
+    <input class="form-control password" required style="width:500px;"><br>
+        <button  class="b btn btn-primary" type="submit" >注 册</button>
+    </div>
+
+    </form>
+    </div>
 </div>
 <script>
 $(".b").click(function () {

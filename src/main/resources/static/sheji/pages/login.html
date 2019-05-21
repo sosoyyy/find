@@ -29,14 +29,21 @@
     $(".b").click(function () {
 
         $.ajax({
-            url:'http://localhost:8080/find/reg',
+            url:'/find/login',
             type:'post',
             dataType:'json',
             data:{
                 username:$(".username").val(),
                 password:$(".password").val()
             },
-            success:window.location.href=""
+            success:
+                function (data){
+                alert(data.code);
+                if(data.code==0){
+                window.location.href="http://localhost:8080/sheji/pages/index.html"
+                }
+
+            }
 
 
         })
