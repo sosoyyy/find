@@ -22,7 +22,7 @@ public class ArticleCategoryController extends BaseController {
     }
 
     @PutMapping
-    public ResultMsg update(@RequestParam ArticleCategory articleCategory){
+    public ResultMsg update(ArticleCategory articleCategory){
         articleCategoryService.updateCategory(articleCategory);
         return ResultMsgFactory.createSuccessMsg();
     }
@@ -39,7 +39,7 @@ public class ArticleCategoryController extends BaseController {
     }
 
     @PostMapping
-    public ResultMsg add(@RequestParam  ArticleCategory articleCategory){
+    public ResultMsg add( ArticleCategory articleCategory){
         articleCategoryService.saveArticleCategory(articleCategory);
         return ResultMsgFactory.createSuccessMsg();
 

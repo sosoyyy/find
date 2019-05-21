@@ -49,7 +49,7 @@ public class ArticleController extends BaseController {
     }
 
     @PostMapping("/lost")
-    public ResultMsg addL(@RequestParam Article article, @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
+    public ResultMsg addL(Article article, @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
         article.setUserId(JwtUtil.getUser().getId());
         article.setLostOrFind(1);
 
@@ -58,7 +58,7 @@ public class ArticleController extends BaseController {
     }
 
     @PostMapping("/find")
-    public ResultMsg addF(@RequestParam Article article,  @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
+    public ResultMsg addF(Article article,  @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
         article.setUserId(JwtUtil.getUser().getId());
         article.setLostOrFind(2);
 
