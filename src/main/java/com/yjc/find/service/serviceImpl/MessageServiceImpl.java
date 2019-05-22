@@ -23,7 +23,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
         MyUtil.checkNull(message);
         MyUtil.checkNull(message.getReceiveId());
         MyUtil.checkNull(message.getContent());
-        MyUtil.checkNull(message.getTitle());
+       // MyUtil.checkNull(message.getTitle());
         message.setSendId(JwtUtil.getUser().getId());
         this.baseMapper.insert(message);
     }

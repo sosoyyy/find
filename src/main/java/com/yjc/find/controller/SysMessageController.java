@@ -107,7 +107,7 @@ public class SysMessageController extends BaseController {
     public ResultMsg addList(Map<String,Object> map){
         MyUtil.checkNull(map);
         MyUtil.checkNull(map.get("content"));
-        MyUtil.checkNull(map.get("title"));
+       // MyUtil.checkNull(map.get("title"));
         MyUtil.checkNull(map.get("receiveIds"));
         SysMessage sysMessage = new SysMessage();
         sysMessage.setContent((String)map.get("content"));
