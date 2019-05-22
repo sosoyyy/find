@@ -28,7 +28,7 @@
          limit #{beginIndex},#{limit}
     </select>
     <select id="selectUserCount" resultType="int" parameterType="java.util.Map">
-        select count(*)
+        select count(*) from  tb_user tu
         where 1=1
         <if test="username!=null and username!=''">
             and tu.username = #{username}
