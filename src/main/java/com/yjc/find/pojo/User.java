@@ -30,7 +30,7 @@ public class User extends BaseEntity {
      */
     private Integer userStatus;
     /**
-     * 0普通用户1manager 默认0
+     * 2普通用户1manager 0super manager
      */
     private Integer userType;
 

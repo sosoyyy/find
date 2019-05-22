@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/find")
 public class LoginController extends BaseController {
@@ -63,4 +65,5 @@ public class LoginController extends BaseController {
         currentUser.setToken(token);
         return ResultMsgFactory.createSuccessMsg(currentUser);
     }
+
 }

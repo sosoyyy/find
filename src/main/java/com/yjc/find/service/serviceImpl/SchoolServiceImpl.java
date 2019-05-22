@@ -21,8 +21,10 @@ public class SchoolServiceImpl extends ServiceImpl<SchoolMapper, School> impleme
     public void saveSchool(School school, MultipartFile shopImg) {
         //保存图片
         try {
+            if (shopImg != null){
             String imgAddr = ImageUtil.storeImg(shopImg.getInputStream(), shopImg.getOriginalFilename());
             school.setSchoolImgAddr(imgAddr);
+            }
         }catch (IOException e){
             throw new MyException("图片处理出错");
         }

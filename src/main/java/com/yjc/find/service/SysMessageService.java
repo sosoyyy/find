@@ -16,4 +16,8 @@ public interface SysMessageService extends IService<SysMessage> {
     MyPage<SysMessage> getSysMessagePage(MyPage<SysMessage> page);
 
     void saveBatchSysMessage(SysMessage sysMessage, List<Long> receiveIds);
+
+    void saveAllUser(SysMessage message);
+
+    void saveAllManager(SysMessage message);
 }

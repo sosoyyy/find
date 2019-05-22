@@ -20,6 +20,16 @@ import java.util.Map;
 public class SysMessageController extends BaseController {
     @Autowired
     private SysMessageService sysMessageService;
+    @PostMapping("all-user")
+    public ResultMsg addAllUser(SysMessage message){
+        sysMessageService.saveAllUser(message);
+        return ResultMsgFactory.createSuccessMsg();
+    }
+    @PostMapping("all-manager")
+    public ResultMsg addAllManager(SysMessage message){
+        sysMessageService.saveAllManager(message);
+        return ResultMsgFactory.createSuccessMsg();
+    }
     @PostMapping
     public ResultMsg add(SysMessage sysMessage){
         sysMessageService.saveSysMessage(sysMessage);

@@ -44,7 +44,7 @@ public class SchoolController extends BaseController {
         return ResultMsgFactory.createSuccessMsg();
     }
     @PostMapping
-    public ResultMsg add(School school, @RequestParam MultipartFile schoolImg){
+    public ResultMsg add(School school, @RequestParam(value = "schoolImg",required = false) MultipartFile schoolImg){
         logger.info("保存学校信息{}");
         schoolService.saveSchool(school,schoolImg);
         return ResultMsgFactory.createSuccessMsg();
