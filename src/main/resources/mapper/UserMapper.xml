@@ -24,10 +24,10 @@
         <if test="schoolId!=null and schoolId!=''">
             and tu.school_id = #{schoolId}
         </if>
-        ORDER BY username asc
-        limit limit #{beginIndex},#{limit}
+        ORDER BY tu.username asc
+         limit #{beginIndex},#{limit}
     </select>
-    <select id="selectUserCount" parameterType="java.util.Map">
+    <select id="selectUserCount" resultType="int" parameterType="java.util.Map">
         select count(*)
         where 1=1
         <if test="username!=null and username!=''">
