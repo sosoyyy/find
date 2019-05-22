@@ -2,6 +2,7 @@ package com.yjc.find.base.controller;
 
 import com.yjc.find.base.bean.ResultMsg;
 import com.yjc.find.base.bean.ResultMsgFactory;
+import com.yjc.find.base.exception.MyAuthException;
 import com.yjc.find.base.exception.MyException;
 import com.yjc.find.utils.JwtUtil;
 import org.springframework.ui.Model;
@@ -48,6 +49,13 @@ public class ExceptionController extends BaseController{
        JwtUtil.removeUser();
 
         return ResultMsgFactory.createErrorMsg(e.getMessage());
+    }
+    @ResponseBody
+    @ExceptionHandler(value = MyAuthException.class)
+    public ResultMsg myErrorHandler(MyAuthException e){
+        logger.warn("认证异常", e);
+        JwtUtil.removeUser();
+        return ResultMsgFactory.createAuthErrorMsg(e.getMessage());
     }
 
 }

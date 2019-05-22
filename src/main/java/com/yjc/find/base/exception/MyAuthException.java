@@ -1,7 +1,7 @@
 package com.yjc.find.base.exception;
 
-public class AuthException extends RuntimeException {
-    public AuthException(String errorMsg) {
+public class MyAuthException extends RuntimeException {
+    public MyAuthException(String errorMsg) {
         super(errorMsg);
     }
 }

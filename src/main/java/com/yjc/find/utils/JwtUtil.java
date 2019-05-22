@@ -1,6 +1,7 @@
 package com.yjc.find.utils;
 
 import com.yjc.find.base.constant.Constant;
+import com.yjc.find.base.exception.MyAuthException;
 import com.yjc.find.pojo.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
@@ -16,7 +17,7 @@ public class JwtUtil {
     private static final ThreadLocal<User> LOGIN_USER=new ThreadLocal<>();
     public static void checkToken(String token){
         if (token == null || !token.startsWith("bearer;")) {
-            MyUtil.checkFailed("身份验证错误");
+           throw new MyAuthException("验证错误");
         }
         String token1 =token.substring(7);
         Claims claims= JwtUtil.parseJWT(token1, Constant.BASE64_SECURITY);
@@ -110,7 +111,7 @@ public class JwtUtil {
             return claims;
         }catch(Exception ex)
         {
-            return null;
+            throw new MyAuthException("验证错误");
         }
     }
 }

@@ -74,4 +74,7 @@ public class ResultMsgFactory {
         return resultMsg;
     }
 
+    public static ResultMsg createAuthErrorMsg(String message) {
+        return createMsg(2, message, null);
+    }
 }
