@@ -16,7 +16,7 @@
             and tu.username = #{username}
         </if>
         <if test="nickName!=null and nickName!=''">
-            and tu.nick_name=#{nickName}
+            and tu.nick_name like CONCAT('%',#{nickName},'%')
         </if>
         <if test="userType!=null and userType!=''">
             and tu.user_type=#{userType}
@@ -34,7 +34,7 @@
             and tu.username = #{username}
         </if>
         <if test="nickName!=null and nickName!=''">
-            and tu.nick_name=#{nickName}
+            and tu.nick_name like CONCAT('%',#{nickName},'%')
         </if>
         <if test="userType!=null and userType!=''">
             and tu.user_type=#{userType}
