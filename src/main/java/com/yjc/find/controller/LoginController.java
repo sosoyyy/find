@@ -22,7 +22,7 @@ public class LoginController extends BaseController {
     private UserService userService;
 
     @PostMapping("/reg")
-    public ResultMsg reg(@RequestParam  User user){
+    public ResultMsg reg( User user){
         MyUtil.checkNull(user);
         MyUtil.checkNull(user.getUsername());
         MyUtil.checkNull(user.getPassword());
