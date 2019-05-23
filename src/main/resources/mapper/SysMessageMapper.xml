@@ -12,4 +12,23 @@
             (#{id},#{sysMessage.title},#{sysMessage.content})
         </foreach>
     </insert>
+    <select id="selectSysPage" parameterType="java.util.Map" resultType="com.yjc.find.pojo.SysMessage">
+        select tm.*
+        from tb_message tm
+        where 1=1
+        and tm.receive_id = #{receiveId}
+        <if test="isRead!=null and isRead!=''">
+            and tm.is_read = #{isRead}
+        </if>
+        ORDER BY tm.create_date desc
+        limit #{beginIndex},#{limit}
+    </select>
+    <select id="selectSysCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from tb_message tm
+        where 1=1
+        and tm.receive_id = #{receiveId}
+        <if test="isRead!=null and isRead!=''">
+            and tm.is_read = #{isRead}
+        </if>
+    </select>
 </mapper>

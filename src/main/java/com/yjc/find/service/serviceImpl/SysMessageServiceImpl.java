@@ -44,7 +44,9 @@ public class SysMessageServiceImpl extends ServiceImpl<SysMessageMapper, SysMess
 
     @Override
     public MyPage<SysMessage> getSysMessagePage(MyPage<SysMessage> page) {
-        return null;
+        page.setRecords(this.baseMapper.selectSysPage(page.getParams()));
+        page.setCount(this.baseMapper.selectSysCount(page.getParams()));
+        return page;
     }
 
     @Override
