@@ -37,6 +37,9 @@
         left join tb_article_img tai on tai.article_id=ta.id
         left join tb_user tu on  tu.id = ta.user_id
         where 1=1
+        <if test="userId!=null and userId!=''">
+            and ta.user_id = #{userId}
+        </if>
         <if test="schoolId!=null and schoolId!=''">
             and ta.school_id = #{schoolId}
         </if>
@@ -67,6 +70,9 @@
         from tb_article ta
 
         where 1=1
+        <if test="userId!=null and userId!=''">
+            and ta.user_id = #{userId}
+        </if>
         <if test="schoolId!=null and schoolId!=''">
             and ta.school_id = #{schoolId}
         </if>
@@ -99,6 +105,9 @@
         left join tb_article_img tai on tai.article_id=ta.id
         left join tb_user tu on  tu.id = ta.user_id
         where 1=1
+        <if test="userId!=null and userId!=''">
+            and ta.user_id = #{userId}
+        </if>
         <if test="schoolId!=null and schoolId!=''">
             and ta.school_id = #{schoolId}
         </if>
@@ -129,6 +138,9 @@
         from tb_article ta
 
         where 1=1
+        <if test="userId!=null and userId!=''">
+            and ta.user_id = #{userId}
+        </if>
         <if test="schoolId!=null and schoolId!=''">
             and ta.school_id = #{schoolId}
         </if>
