@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjc.find.dao.RecordMapper">
+    <select id="selectRecordPage"  resultType="com.yjc.find.pojo.Record" parameterType="java.util.Map">
+        select * from tb_record trd
+        where 1=1
+        <if test="receiveType!=null and receiveType!=''">
+            and trd.receive_type = #{receiveType}
+        </if>
+        order by trd.create_date desc
+        limit #{beginIndex},#{limit}
+    </select>
+    <select id="selectRecordCount" resultType="int" parameterType="java.util.Map">
+        select count(*)  from tb_record trd
+        where 1=1
+        <if test="receiveType!=null and receiveType!=''">
+            and trd.receive_type = #{receiveType}
+        </if>
+    </select>
+</mapper>

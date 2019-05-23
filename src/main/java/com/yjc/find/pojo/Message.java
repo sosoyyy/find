@@ -24,8 +24,10 @@ public class Message extends BaseEntity {
     private Integer isRead;
     private Long articleId;
     private  String  title;
-
     private String content;
+
+
+
     @TableField(exist = false)
     private String sendName;
     @TableField(exist = false)

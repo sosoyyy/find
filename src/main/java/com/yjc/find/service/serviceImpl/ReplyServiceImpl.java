@@ -39,7 +39,7 @@ public class ReplyServiceImpl extends ServiceImpl<ReplyMapper,Reply> implements 
         MyUtil.checkNull(article.getId());
         String content = "您发布的内容 [" +article.getArticleName()+"] 下有了新的回复，请查看。";
         String title = "回复提醒";
-        SysMessage sysMessage = new SysMessage().setReceiveId(article.getUserId()).setContent(content).setTitle(title);
+        SysMessage sysMessage = new SysMessage().setReceiveId(article.getUserId()).setContent(content).setTitle(title).setArticleId(article.getId());
         sysMessageMapper.insert(sysMessage);
     }
 

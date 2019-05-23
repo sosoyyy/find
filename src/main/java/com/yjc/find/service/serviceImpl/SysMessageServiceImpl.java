@@ -3,10 +3,13 @@ package com.yjc.find.service.serviceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yjc.find.base.bean.MyPage;
+import com.yjc.find.dao.RecordMapper;
 import com.yjc.find.dao.SysMessageMapper;
 import com.yjc.find.dao.UserMapper;
+import com.yjc.find.pojo.Record;
 import com.yjc.find.pojo.SysMessage;
 import com.yjc.find.pojo.User;
+import com.yjc.find.service.RecordService;
 import com.yjc.find.service.SysMessageService;
 import com.yjc.find.utils.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,8 @@ import java.util.List;
 public class SysMessageServiceImpl extends ServiceImpl<SysMessageMapper, SysMessage> implements SysMessageService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RecordMapper recordMapper;
     @Override
     public void saveSysMessage(SysMessage sysMessage) {
         MyUtil.checkNull(sysMessage);
@@ -50,6 +55,10 @@ public class SysMessageServiceImpl extends ServiceImpl<SysMessageMapper, SysMess
     @Override
     @Transactional
     public void saveAllUser(SysMessage message) {
+        MyUtil.checkNull(message.getTitle());
+        MyUtil.checkNull(message.getContent());
+        Record record = new Record().setReceiveType(2).setTitle(message.getTitle()).setContent(message.getContent());
+        recordMapper.insert(record);
         User queryUser = new User().setUserType(2);
         List<User> users = userMapper.selectList(new QueryWrapper<>(queryUser));
         for (User user:users
@@ -62,6 +71,10 @@ public class SysMessageServiceImpl extends ServiceImpl<SysMessageMapper, SysMess
     @Override
     public void saveAllManager(SysMessage message) {
         User queryUser = new User().setUserType(1);
+        MyUtil.checkNull(message.getTitle());
+        MyUtil.checkNull(message.getContent());
+        Record record = new Record().setReceiveType(1).setTitle(message.getTitle()).setContent(message.getContent());
+        recordMapper.insert(record);
         List<User> users = userMapper.selectList(new QueryWrapper<>(queryUser));
         for (User user:users
         ) {

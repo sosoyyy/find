@@ -45,8 +45,8 @@ public class MessageController extends BaseController {
      */
     @GetMapping("/page")
     public ResultMsg page(@RequestParam Map<String,Object> params){
+        params.put("receiveId",JwtUtil.getUser().getId());
         MyPage<Message> page = new MyPage<>(params);
-        MyUtil.checkNull(params.get("receiveId"));
         page = messageService.getMessagePage(page);
         ResultMsg resultMsg = ResultMsgFactory.createSuccessMsg();
         resultMsg.setCount(page.getCount());

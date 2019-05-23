@@ -6,7 +6,9 @@ import com.yjc.find.base.bean.MyPage;
 import com.yjc.find.base.bean.ResultMsg;
 import com.yjc.find.base.bean.ResultMsgFactory;
 import com.yjc.find.base.controller.BaseController;
+import com.yjc.find.pojo.Record;
 import com.yjc.find.pojo.SysMessage;
+import com.yjc.find.service.RecordService;
 import com.yjc.find.service.SysMessageService;
 import com.yjc.find.utils.JwtUtil;
 import com.yjc.find.utils.MyUtil;
@@ -20,6 +22,26 @@ import java.util.Map;
 public class SysMessageController extends BaseController {
     @Autowired
     private SysMessageService sysMessageService;
+    @Autowired
+    private RecordService recordService;
+    @DeleteMapping("/record/{id}")
+    public ResultMsg deleteRecord(@PathVariable("id")Long id){
+        recordService.removeById(id);
+        return ResultMsgFactory.createSuccessMsg();
+    }
+    @GetMapping("/record/{id}")
+    public ResultMsg getRecordOne(@PathVariable("id")Long id){
+        return ResultMsgFactory.createSuccessMsg(recordService.getById(id));
+    }
+    @GetMapping("/record/page")
+    public ResultMsg getRecord(@RequestParam Map<String,Object> params){
+        MyPage<Record> page  = new MyPage<>(params);
+        page = recordService.getRecordPage(page);
+        ResultMsg resultMsg = ResultMsgFactory.createSuccessMsg();
+        resultMsg.setCount(page.getCount());
+        resultMsg.setData(page.getRecords());
+        return resultMsg;
+    }
     @PostMapping("all-user")
     public ResultMsg addAllUser(SysMessage message){
         sysMessageService.saveAllUser(message);

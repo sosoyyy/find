@@ -75,9 +75,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 String contentOfBeMatched ="["+article.getArticleName()+"]"+" 可能与您发布的寻物启事有关,请查看";
                 String title = "系统提醒";
                 SysMessage sysMessage = new SysMessage();
-                sysMessage.setContent(contentOfMatch).setReceiveId(article.getUserId()).setTitle(title);
+                sysMessage.setContent(contentOfMatch).setReceiveId(article.getUserId()).setTitle(title).setArticleId(item.getId());
                 SysMessage beMatched  = new SysMessage();
-                beMatched.setContent(contentOfBeMatched).setTitle(title).setReceiveId(item.getUserId());
+                beMatched.setContent(contentOfBeMatched).setTitle(title).setReceiveId(item.getUserId()).setArticleId(article.getId());
                 sysMessageMapper.insert(sysMessage);
                 sysMessageMapper.insert(beMatched);
             }
@@ -121,9 +121,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 String contentOfBeMatched ="["+article.getArticleName()+"]"+" 可能与您发布的失物招领有关,请查看";
                 String title = "系统提醒";
                 SysMessage sysMessage = new SysMessage();
-                sysMessage.setContent(contentOfMatch).setReceiveId(article.getUserId()).setTitle(title);
+                sysMessage.setContent(contentOfMatch).setReceiveId(article.getUserId()).setTitle(title).setArticleId(item.getId());
                 SysMessage beMatched  = new SysMessage();
-                beMatched.setContent(contentOfBeMatched).setTitle(title).setReceiveId(item.getUserId());
+                beMatched.setContent(contentOfBeMatched).setTitle(title).setReceiveId(item.getUserId()).setArticleId(article.getId());
                 sysMessageMapper.insert(sysMessage);
                 sysMessageMapper.insert(beMatched);
             }
