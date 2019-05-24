@@ -19,7 +19,7 @@ public class ReplyController extends BaseController {
     private ReplyService replyService;
 
     @PostMapping
-    public ResultMsg add(@RequestParam Reply reply){
+    public ResultMsg add(Reply reply){
         //todo 站内信提醒用户
         replyService.saveReply(reply);
         return ResultMsgFactory.createSuccessMsg();
