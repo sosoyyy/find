@@ -67,8 +67,9 @@ public class SchoolServiceImpl extends ServiceImpl<SchoolMapper, School> impleme
         MyUtil.checkNull(id);
         School school = this.baseMapper.selectById(id);
         MyUtil.checkNull(school);
-        MyUtil.checkNull(school.getSchoolImgAddr());
-        ImageUtil.deleteFileOrPath(school.getSchoolImgAddr());
+        if(school.getSchoolImgAddr()!=null) {
+            ImageUtil.deleteFileOrPath(school.getSchoolImgAddr());
+        }
     }
 
     @Override
