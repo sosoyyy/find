@@ -70,6 +70,7 @@ public class SchoolServiceImpl extends ServiceImpl<SchoolMapper, School> impleme
         if(school.getSchoolImgAddr()!=null) {
             ImageUtil.deleteFileOrPath(school.getSchoolImgAddr());
         }
+        this.baseMapper.deleteById(id);
     }
 
     @Override
