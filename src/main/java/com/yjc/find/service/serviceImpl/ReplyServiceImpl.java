@@ -34,7 +34,7 @@ public class ReplyServiceImpl extends ServiceImpl<ReplyMapper,Reply> implements 
         MyUtil.checkNull(reply.getContent());
         this.baseMapper.insert(reply);
         //发送系统站内信给用户提醒收到回复
-        Article article = articleService.getById(reply.getId());
+        Article article = articleService.getById(reply.getArticleId());
         MyUtil.checkNull(article);
         MyUtil.checkNull(article.getId());
         String content = "您发布的内容 [" +article.getArticleName()+"] 下有了新的回复，请查看。";

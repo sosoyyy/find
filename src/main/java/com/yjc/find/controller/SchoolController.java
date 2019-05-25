@@ -1,6 +1,7 @@
 package com.yjc.find.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yjc.find.base.bean.MyPage;
 import com.yjc.find.base.bean.ResultMsg;
 import com.yjc.find.base.bean.ResultMsgFactory;
 import com.yjc.find.base.controller.BaseController;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/find/school")
@@ -27,6 +29,15 @@ public class SchoolController extends BaseController {
         querySchool.setStatus(0);
         List<School> schoolList = schoolService.list(new QueryWrapper<>(querySchool));
         return ResultMsgFactory.createSuccessMsg(schoolList);
+    }
+    @GetMapping("/page")
+    public ResultMsg listAll(@RequestParam Map<String,Object> params){
+        MyPage<School> page = new MyPage<>(params);
+        page = schoolService.getPage(page);
+        ResultMsg resultMsg = ResultMsgFactory.createSuccessMsg();
+        resultMsg.setData(page.getRecords());
+        resultMsg.setCount(page.getCount());
+        return resultMsg;
     }
     @GetMapping("/{id}")
     public ResultMsg get(@PathVariable("id")Long id){

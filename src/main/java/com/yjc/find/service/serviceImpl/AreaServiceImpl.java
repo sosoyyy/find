@@ -2,6 +2,7 @@ package com.yjc.find.service.serviceImpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yjc.find.base.bean.MyPage;
 import com.yjc.find.base.exception.MyException;
 import com.yjc.find.dao.AreaMapper;
 import com.yjc.find.dao.SchoolMapper;
@@ -46,5 +47,12 @@ public class AreaServiceImpl extends ServiceImpl<AreaMapper, Area> implements Ar
             MyUtil.checkFailed("地区名重复");
         }
         areaMapper.updateById(queryArea);
+    }
+
+    @Override
+    public MyPage<Area> getAreaPage(MyPage<Area> page) {
+        page.setRecords(this.baseMapper.selectAreaPage(page.getParams()));
+        page.setCount(this.baseMapper.selectAreaCount(page.getParams()));
+        return page;
     }
 }

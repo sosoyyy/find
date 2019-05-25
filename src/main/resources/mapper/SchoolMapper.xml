@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yjc.find.dao.SchoolMapper">
+    <select id="selectSchoolPage" parameterType="java.util.Map" resultType="com.yjc.find.pojo.School">
+        select ts.*
+        from tb_school ts
+        where 1=1
+        <if test="status!=null and status!=''">
+            and ts.status = #{status}
+        </if>
+        order by ts.create_date desc
+        limit #{beginIndex},#{limit}
+    </select>
+    <select id="selectSchoolCount" parameterType="java.util.Map" resultType="int">
+        select count(*)
+        from tb_school ts
+        where 1=1
+        <if test="status!=null and status!=''">
+            and ts.status = #{status}
+        </if>
+
+    </select>
 
 </mapper>

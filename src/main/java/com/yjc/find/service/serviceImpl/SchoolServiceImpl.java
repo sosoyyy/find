@@ -2,6 +2,7 @@ package com.yjc.find.service.serviceImpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yjc.find.base.bean.MyPage;
 import com.yjc.find.base.exception.MyException;
 import com.yjc.find.dao.SchoolMapper;
 import com.yjc.find.pojo.School;
@@ -68,5 +69,12 @@ public class SchoolServiceImpl extends ServiceImpl<SchoolMapper, School> impleme
         MyUtil.checkNull(school);
         MyUtil.checkNull(school.getSchoolImgAddr());
         ImageUtil.deleteFileOrPath(school.getSchoolImgAddr());
+    }
+
+    @Override
+    public MyPage<School> getPage(MyPage<School> page) {
+        page.setRecords(this.baseMapper.selectSchoolPage(page.getParams()));
+        page.setCount(this.baseMapper.selectSchoolCount(page.getParams()));
+        return page;
     }
 }
