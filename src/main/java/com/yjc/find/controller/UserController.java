@@ -77,4 +77,9 @@ public class UserController extends BaseController{
         userService.update(user,userImg);
         return ResultMsgFactory.createSuccessMsg();
     }
+    @DeleteMapping("/{id}")
+    public  ResultMsg resultMsg(@PathVariable("id")Long id){
+        userService.removeById(id);
+        return ResultMsgFactory.createSuccessMsg();
+    }
 }
