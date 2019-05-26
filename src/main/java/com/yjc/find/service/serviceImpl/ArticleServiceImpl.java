@@ -143,7 +143,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 ImageUtil.deleteFileOrPath(articleImg.getArticleImgAddr());
             }
         }
-        articleImgMapper.deleteById(id);
+        ArticleImg query = new ArticleImg().setArticleId(id);
+        articleImgMapper.delete(new QueryWrapper<>(query));
+        this.baseMapper.deleteById(id);
     }
 
 
