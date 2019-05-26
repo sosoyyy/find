@@ -27,7 +27,76 @@
             <result column="article_img_addr" property="articleImgList"/>
         </collection>
     </resultMap>
-
+    <select id="selectArticleCount" parameterType="java.util.Map" resultType="int">
+        select count(*)
+        from tb_article ta
+        <if test="userId!=null and userId!=''">
+            and ta.user_id = #{userId}
+        </if>
+        <if test="schoolId!=null and schoolId!=''">
+            and ta.school_id = #{schoolId}
+        </if>
+        <if test="articleName!=null and articleName!=''">
+            and ta.article_name like CONCAT('%',#{articleName},'%')
+        </if>
+        <if test="areaId!=null and areaId!=''">
+            and  ta.area_id = #{areaId}
+        </if>
+        <if test="articleCategoryId!=null and articleCategoryId!=''">
+            and ta.article_category_id = #{articleCategoryId}
+        </if>
+        <if test="lostDate!=null">
+            and (ta.lost_date between  date_sub(DATE_FORMAT(#{lostDate},'%Y-%m-%d'), interval 1 day)  and date_add(DATE_FORMAT(#{lostDate},'%Y-%m-%d'), interval 1 day))
+        </if>
+        <if test="idFind!=null and isFind!=''">
+            and ta.is_find = #{idFind}
+        </if>
+        <if test="status!=null and status!=''">
+            and ta.status = #{status}
+        </if>
+        <if test="lostOrFind!=null and lostOrFind!=''">
+            and ta.lost_or_find = #{lostOrFind}
+        </if>
+    </select>
+    <select id="selectArticlePage" parameterType="java.util.Map" resultMap="ArticleMap">
+        select ta.*,area.area_name,tac.article_category_name,ts.school_name,tai.article_img_addr,tu.nick_name,tu.user_img_addr
+        from tb_article ta
+                 left join tb_area  area on ta.area_id = area.id
+                 left join tb_article_category tac on ta.article_category_id =  tac.id
+                 left join tb_school ts on ta.school_id = ts.id
+                 left join tb_article_img tai on tai.article_id=ta.id
+                 left join tb_user tu on  tu.id = ta.user_id
+        where 1=1
+        <if test="userId!=null and userId!=''">
+            and ta.user_id = #{userId}
+        </if>
+        <if test="schoolId!=null and schoolId!=''">
+            and ta.school_id = #{schoolId}
+        </if>
+        <if test="articleName!=null and articleName!=''">
+            and ta.article_name like CONCAT('%',#{articleName},'%')
+        </if>
+        <if test="areaId!=null and areaId!=''">
+            and  ta.area_id = #{areaId}
+        </if>
+        <if test="articleCategoryId!=null and articleCategoryId!=''">
+            and ta.article_category_id = #{articleCategoryId}
+        </if>
+        <if test="lostDate!=null">
+            and (ta.lost_date between  date_sub(DATE_FORMAT(#{lostDate},'%Y-%m-%d'), interval 1 day)  and date_add(DATE_FORMAT(#{lostDate},'%Y-%m-%d'), interval 1 day))
+        </if>
+        <if test="idFind!=null and isFind!=''">
+            and ta.is_find = #{idFind}
+        </if>
+        <if test="status!=null and status!=''">
+            and ta.status = #{status}
+        </if>
+        <if test="lostOrFind!=null and lostOrFind!=''">
+            and ta.lost_or_find = #{lostOrFind}
+        </if>
+        order by create_date desc
+        limit #{beginIndex},#{limit}
+    </select>
     <select id="selectLostPage" parameterType="java.util.Map" resultMap="ArticleMap">
         select ta.*,area.area_name,tac.article_category_name,ts.school_name,tai.article_img_addr,tu.nick_name,tu.user_img_addr
         from tb_article ta

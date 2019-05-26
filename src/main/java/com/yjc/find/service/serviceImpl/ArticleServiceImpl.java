@@ -200,4 +200,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         page.setRecords(this.baseMapper.selectFindPage(page.getParams()));
         return page;
     }
+
+    @Override
+    public MyPage<Article> getArticlePage(MyPage<Article> page) {
+        page.setCount(this.baseMapper.selectArticleCount(page.getParams()));
+        page.setRecords(this.baseMapper.selectArticlePage(page.getParams()));
+        return page;
+    }
 }

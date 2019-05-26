@@ -21,4 +21,6 @@ public interface ArticleService extends IService<Article> {
     void updateArticle(Article article, MultipartFile[] articleImgList);
 
     MyPage<Article> getFindArticlePage(MyPage<Article> page);
+
+    MyPage<Article> getArticlePage(MyPage<Article> page);
 }

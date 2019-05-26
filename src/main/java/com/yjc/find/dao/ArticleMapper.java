@@ -20,4 +20,8 @@ public interface ArticleMapper extends BaseMapper<Article> {
     List<Article> selectFindPage(Map<String, Object> params);
 
     List<Article> matchArticle(@Param("article")Article matchArticle);
+
+    int selectArticleCount(Map<String, Object> params);
+
+    List<Article> selectArticlePage(Map<String, Object> params);
 }

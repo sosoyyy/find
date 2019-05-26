@@ -18,7 +18,15 @@ import java.util.Map;
 public class ArticleController extends BaseController {
     @Autowired
     private ArticleService articleService;
-
+    @GetMapping("/page")
+    public ResultMsg getPage(@RequestParam Map<String,Object> params){
+        MyPage<Article> page =new MyPage<>(params);
+        page = articleService.getArticlePage(page);
+        ResultMsg resultMsg = ResultMsgFactory.createSuccessMsg();
+        resultMsg.setCount(page.getCount());
+        resultMsg.setData(page.getRecords());
+        return resultMsg;
+    }
     @PutMapping
     public ResultMsg update(Article article, @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
         articleService.updateArticle(article,articleImgList);
