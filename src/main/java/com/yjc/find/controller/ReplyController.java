@@ -6,6 +6,7 @@ import com.yjc.find.base.bean.ResultMsgFactory;
 import com.yjc.find.base.controller.BaseController;
 import com.yjc.find.pojo.Reply;
 import com.yjc.find.service.ReplyService;
+import com.yjc.find.utils.JwtUtil;
 import com.yjc.find.utils.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,11 @@ public class ReplyController extends BaseController {
     private ReplyService replyService;
 
     @PostMapping
-    public ResultMsg add(Reply reply){
+    public ResultMsg add(Reply reply, @RequestParam(value = "token") String token){
+        JwtUtil.checkToken(token);
         //todo 站内信提醒用户
         replyService.saveReply(reply);
+        JwtUtil.removeUser();
         return ResultMsgFactory.createSuccessMsg();
     }
     @GetMapping("/{id}")
