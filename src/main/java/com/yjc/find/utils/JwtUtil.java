@@ -16,10 +16,10 @@ public class JwtUtil {
 
     private static final ThreadLocal<User> LOGIN_USER=new ThreadLocal<>();
     public static void checkToken(String token){
-        if (token == null || !token.startsWith("bearer;")) {
+        if (token == null /*|| !token.startsWith("bearer;")*/) {
            throw new MyAuthException("验证错误");
         }
-        String token1 =token.substring(7);
+        String token1 =token;//.substring(7);
         Claims claims= JwtUtil.parseJWT(token1, Constant.BASE64_SECURITY);
         MyUtil.checkNull(claims,"请登录后访问");
         long id=MyUtil.getLong(claims.get("id"));

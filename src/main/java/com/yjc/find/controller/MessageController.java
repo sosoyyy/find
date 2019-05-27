@@ -59,8 +59,10 @@ public class MessageController extends BaseController {
      * @return
      */
     @PostMapping
-    public ResultMsg add(Message message){
+    public ResultMsg add(Message message,@RequestParam(value = "token") String token ){
+        JwtUtil.checkToken(token);
         messageService.saveMessage(message);
+        JwtUtil.removeUser();
         return ResultMsgFactory.createSuccessMsg();
     }
 

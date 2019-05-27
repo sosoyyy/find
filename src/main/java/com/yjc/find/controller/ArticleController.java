@@ -29,6 +29,7 @@ public class ArticleController extends BaseController {
     }
     @PutMapping
     public ResultMsg update(Article article, @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
+
         articleService.updateArticle(article,articleImgList);
         return ResultMsgFactory.createSuccessMsg();
     }
@@ -57,20 +58,22 @@ public class ArticleController extends BaseController {
     }
 
     @PostMapping("/lost")
-    public ResultMsg addL(Article article, @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
+    public ResultMsg addL(Article article, @RequestParam(value = "token") String token ,@RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
+        JwtUtil.checkToken(token);
         article.setUserId(JwtUtil.getUser().getId());
         article.setLostOrFind(1);
-
         articleService.saveArticleLost(article,articleImgList);
+        JwtUtil.removeUser();
         return ResultMsgFactory.createSuccessMsg();
     }
 
     @PostMapping("/find")
-    public ResultMsg addF(Article article,  @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
+    public ResultMsg addF(Article article,@RequestParam(value = "token") String token , @RequestParam(value = "imgList",required = false) MultipartFile[] articleImgList){
+        JwtUtil.checkToken(token);
         article.setUserId(JwtUtil.getUser().getId());
         article.setLostOrFind(2);
-
         articleService.saveArticleFind(article,articleImgList);
+        JwtUtil.removeUser();
         return ResultMsgFactory.createSuccessMsg();
     }
 

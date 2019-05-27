@@ -7,6 +7,7 @@ import com.yjc.find.base.bean.ResultMsgFactory;
 import com.yjc.find.base.controller.BaseController;
 import com.yjc.find.pojo.School;
 import com.yjc.find.service.SchoolService;
+import com.yjc.find.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,7 +57,9 @@ public class SchoolController extends BaseController {
     }
     @PostMapping
     public ResultMsg add(School school, @RequestParam(value = "schoolImg",required = false) MultipartFile schoolImg){
-        logger.info("保存学校信息{}");
+        //JwtUtil.checkToken(token);
+        logger.info("保存学校信息{}",school);
+        logger.info("当前对象是{}",JwtUtil.getUser().getUsername());
         schoolService.saveSchool(school,schoolImg);
         return ResultMsgFactory.createSuccessMsg();
     }

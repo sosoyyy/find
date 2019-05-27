@@ -7,7 +7,6 @@ import com.yjc.find.pojo.Message;
 import com.yjc.find.service.MessageService;
 import com.yjc.find.utils.JwtUtil;
 import com.yjc.find.utils.MyUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
