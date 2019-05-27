@@ -113,8 +113,6 @@ public class SysMessageController extends BaseController {
      */
     @GetMapping("/page")
     public ResultMsg page(@RequestParam Map<String,Object> params){
-        params.put("receiveId",JwtUtil.getUser().getId());
-
         MyPage<SysMessage> page = new MyPage<>(params);
         page = sysMessageService.getSysMessagePage(page);
         ResultMsg resultMsg = ResultMsgFactory.createSuccessMsg();
