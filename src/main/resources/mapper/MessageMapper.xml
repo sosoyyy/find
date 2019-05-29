@@ -15,7 +15,12 @@
         left join tb_user send on tm.send_id = send.id
         left join tb_user receive on tm.receive_id = receive.id
         where 1=1
-        and tm.receive_id = #{receiveId}
+        <if test="receiveId!=null and receiveId!=''">
+            and tm.receive_id = #{receiveId}
+        </if>
+        <if test="sendId!=null and sendId!=''">
+            and tm.send_id = #{sendId}
+        </if>
         <if test="isRead!=null and isRead!=''">
             and tm.is_read = #{isRead}
         </if>
@@ -28,7 +33,12 @@
         left join tb_user send on tm.send_id = send.id
         left join tb_user receive on tm.receive_id = receive.id
         where 1=1
-        and tm.receive_id = #{receiveId}
+        <if test="receiveId!=null and receiveId!=''">
+            and tm.receive_id = #{receiveId}
+        </if>
+        <if test="sendId!=null and sendId!=''">
+            and tm.send_id = #{sendId}
+        </if>
         <if test="isRead!=null and isRead!=''">
             and tm.is_read = #{isRead}
         </if>
