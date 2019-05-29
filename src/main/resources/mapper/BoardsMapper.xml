@@ -14,7 +14,7 @@
         order by tb.create_date desc
         limit #{beginIndex},#{limit}
     </select>
-    <select id="selectBoardsCount" parameterType="java.util.Map">
+    <select id="selectBoardsCount" parameterType="java.util.Map" resultType="int">
         select count(*)
         from tb_boards tb
         where 1=1
