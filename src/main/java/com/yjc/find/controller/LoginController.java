@@ -62,6 +62,7 @@ public class LoginController extends BaseController {
         currentUser.setUsername(user.getUsername());
         currentUser.setId(user.getId());
         currentUser.setUserType(user.getUserType());
+        currentUser.setSchoolId(user.getSchoolId());
         currentUser.setToken(token);
         return ResultMsgFactory.createSuccessMsg(currentUser);
     }
