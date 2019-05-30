@@ -4,13 +4,15 @@
 
 
     <select id="selectMessageOne" parameterType="Long" resultType="com.yjc.find.pojo.Message">
-        select tm.*,send.nick_name as sendName,send.user_img_addr as send_img_addr
+        select tm.*,send.nick_name as sendName,send.user_img_addr as send_img_addr,receive.nick_name as receiveName,receive.user_img_addr
+        as receive_img_addr
         from tb_message tm
         left join tb_user send on tm.send_id = send.id
         where tm.id = #{id}
     </select>
     <select id="selectMessagePage" parameterType="java.util.Map" resultType="com.yjc.find.pojo.Message">
-        select tm.*,send.nick_name as sendName,send.user_img_addr as send_img_addr
+        select tm.*,send.nick_name as sendName,send.user_img_addr as send_img_addr,receive.nick_name as receiveName,receive.user_img_addr
+        as receive_img_addr
         from tb_message tm
         left join tb_user send on tm.send_id = send.id
         left join tb_user receive on tm.receive_id = receive.id
