@@ -10,7 +10,7 @@ public class MyConfig extends WebMvcConfigurationSupport {
 
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 
-        registry.addResourceHandler("/image/**").addResourceLocations("file:/root/find/images/");
-
+        //registry.addResourceHandler("/image/**").addResourceLocations("file:/usr/myfiles/images/");
+        registry.addResourceHandler("/images/**").addResourceLocations("file:D:/work/find/images/");
     }
 }
